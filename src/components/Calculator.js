@@ -7,6 +7,7 @@
 // Need to layout the logic flow of the operations
 
 import CalculatorInputsLayout from "./CalculatorInputsLayout"
+import classes from "./Calculator.module.css"
 // import { useState } from 'react';
 
 // const calculatorSymbols = ['/', '%', 'X', '-', '+'];
@@ -15,9 +16,12 @@ const Calculator = () => {
   // const [currSelectedVal, setCurrSelectedVal] = useState(null);
 
   return (
-    <div>
-      <CalculatorInputsLayout />
+    <div className={classes['container']}>
+      <div className={classes['calculator']}>
+        <CalculatorInputsLayout />
+      </div>
     </div>
+
   )
 }
 

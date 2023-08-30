@@ -1,0 +1,13 @@
+
+.container {
+  width: 50%;
+  margin: 5rem auto 0 auto;
+}
+
+.calculator {
+  background: #1C1C1C;
+  max-width: 15rem;
+  margin: 0 auto;
+  padding: 1rem;
+  /* add box shadow */
+}
