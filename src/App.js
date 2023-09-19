@@ -1,11 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
 import Calculator from './components/Calculator';
+import { CalculatorProvider } from './context/CalculatorContext';
 
 function App() {
   return (
     <div className="App">
-      <Calculator />
+      <CalculatorProvider>
+        <Calculator />
+      </CalculatorProvider>
     </div>
   );
 }

@@ -13,10 +13,9 @@ const CalculatorButton = (props) => {
     additionalCSS = classes['btn-operations'];
   }
 
-  console.log(props);
   return (
     <React.Fragment>
-      <button className={`${classes.btn} ${additionalCSS} ${props.buttonStyle ? props.buttonStyle : ''}`}>
+      <button className={`${classes.btn} ${additionalCSS} ${props.buttonStyle ? props.buttonStyle : ''}`} onClick={props.btnOnClick} value={props.buttonSymbol}>
         {props.buttonSymbol}
       </button>
     </React.Fragment>

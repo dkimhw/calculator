@@ -1,0 +1,13 @@
+
+
+.calculator-display {
+  color: #fff;
+  text-align: right;
+}
+
+.calculator-display-value {
+  font-size: 2.5rem;
+  font-weight: normal;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

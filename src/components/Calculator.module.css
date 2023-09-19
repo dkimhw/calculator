@@ -5,6 +5,8 @@
 }
 
 .calculator {
+  display: grid;
+  grid-template-columns: repeat(1fr, 2);
   background: #1C1C1C;
   max-width: 15rem;
   margin: 0 auto;
