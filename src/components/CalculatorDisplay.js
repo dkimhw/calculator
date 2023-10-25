@@ -1,10 +1,15 @@
 
-import classes from './CalculatorDisplay.module.css'
+import classes from './CalculatorDisplay.module.css';
+import { useContext } from 'react';
+import { CalculatorContext } from '../context/CalculatorContext';
+import { Textfit } from 'react-textfit';
 
-const CalculatorDisplay = (props) => {
+const CalculatorDisplay = () => {
+  const { calculation } = useContext(CalculatorContext);
+
   return (
     <div className={ classes['calculator-display'] }>
-      <h1 className={ classes['calculator-display-value'] }>{ props.currVal || 0}</h1>
+      <Textfit>{ calculation.num || 0 }</Textfit>
     </div>
   )
 };
