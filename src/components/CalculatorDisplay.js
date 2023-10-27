@@ -6,10 +6,10 @@ import { Textfit } from 'react-textfit';
 
 const CalculatorDisplay = () => {
   const { calculation } = useContext(CalculatorContext);
-
+  console.log("calculation.num: ", calculation.num);
   return (
     <div className={ classes['calculator-display'] }>
-      <Textfit>{ calculation.num || 0 }</Textfit>
+      <Textfit max={70} mode="single">{ calculation.num ? calculation.num : calculation.res }</Textfit>
     </div>
   )
 };

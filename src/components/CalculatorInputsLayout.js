@@ -15,13 +15,13 @@ const CalculatorInputsLayout = (props) => {
         {
           mainCalculatorInputSymbols.map((symbol, index) => {
             if (index >= 0 && index <= 2) {
-              return <div className={ classes['grid-item'] }><CalculatorButton buttonSymbol={symbol} additionalCSSType='utility' key={index} btnOnClick= { props.btnOnClick }/></div>
+              return <div className={ classes['grid-item'] } key={index}><CalculatorButton buttonSymbol={symbol} additionalCSSType='utility' btnOnClick= { props.btnOnClick }/></div>
             } else if (symbol === 0) {
-              return <div className={ classes['grid-item-span-two'] }><CalculatorButton buttonSymbol={symbol} additionalCSSType='numbers' key={index} btnOnClick= { props.btnOnClick }/></div>
+              return <div className={ classes['grid-item-span-two'] }  key={index}><CalculatorButton buttonSymbol={symbol} additionalCSSType='numbers' btnOnClick= { props.btnOnClick }/></div>
             } else if (['÷', 'x', '-', '+', '='].includes(symbol)) {
-              return <div className={ classes['grid-item'] }><CalculatorButton buttonSymbol={symbol} additionalCSSType='ops' key={index} btnOnClick= { props.btnOnClick }/></div>
+              return <div className={ classes['grid-item'] } key={index} ><CalculatorButton buttonSymbol={symbol} additionalCSSType='ops' btnOnClick= { props.btnOnClick }/></div>
             } else {
-              return <div className={ classes['grid-item'] }><CalculatorButton buttonSymbol={symbol} additionalCSSType='numbers' key={index} btnOnClick= { props.btnOnClick }/></div>
+              return <div className={ classes['grid-item'] } key={index}><CalculatorButton buttonSymbol={symbol} additionalCSSType='numbers' btnOnClick= { props.btnOnClick }/></div>
             }
           })
         }
