@@ -11,6 +11,11 @@
   width: 100%;
 }
 
+.highlight {
+  background-color: #fff;
+  color: #000;
+}
+
 .btn:hover {
   background-color: #000;
 }

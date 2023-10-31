@@ -1,10 +1,10 @@
 
 
-// Store the necessary states here
-// What needs to managed?
-// currentDisplayVal to pass to CalculatorDisplay
-// currentTotalVal which will display after user presses "="
-// Need to layout the logic flow of the operations
+/*
+
+3. User should be able to select "+", "+", "+" --> save the result - does not necessarily need to have selected "="
+
+*/
 
 import CalculatorInputsLayout from "./CalculatorInputsLayout"
 import CalculatorDisplay from "./CalculatorDisplay"

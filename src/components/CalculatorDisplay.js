@@ -6,7 +6,6 @@ import { Textfit } from 'react-textfit';
 
 const CalculatorDisplay = () => {
   const { calculation } = useContext(CalculatorContext);
-  console.log("calculation.num: ", calculation.num);
   return (
     <div className={ classes['calculator-display'] }>
       <Textfit max={70} mode="single">{ calculation.num ? calculation.num : calculation.res }</Textfit>

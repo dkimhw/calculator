@@ -1,12 +1,20 @@
 
 import React from 'react';
 import classes from './CalculatorButton.module.css';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CalculatorContext } from "../context/CalculatorContext";
 
 
 // props has the button symbol that we can display i.e. 1, 2, +, %
 const CalculatorButton = (props) => {
+  // Load context
+  const { calculation, setCalculation } = useContext(CalculatorContext);
+
+  // Component states
+  const [isHighlighted, setIsHighlighted] = useState(false);
+  const [isOpClick, setIsOpClick ] = useState(false);
+
+  // Parse what css style to use
   let additionalCSS = '';
   if (props.additionalCSSType === 'utility') {
     additionalCSS = classes['btn-utility'];
@@ -16,14 +24,12 @@ const CalculatorButton = (props) => {
     additionalCSS = classes['btn-operations'];
   }
 
-  const { calculation, setCalculation } = useContext(CalculatorContext);
 
   const dotClick = () => {
     setCalculation({
       ...calculation,
       num: !calculation.num.toString().includes('.') ? calculation.num + '.' : calculation.num
     });
-    console.log(calculation);
   }
 
   const resetClick = () => {
@@ -71,7 +77,7 @@ const CalculatorButton = (props) => {
       };
 
       setCalculation({
-        res: math(calculation.res, calculation.num, calculation.sign),
+        res: math(Number(calculation.res), Number(calculation.num), calculation.sign),
         sign: '',
         num: 0,
       });
@@ -79,8 +85,25 @@ const CalculatorButton = (props) => {
   }
 
   // const mainCalculatorInputSymbols = ['AC', '+/-', '%', '÷', 7, 8, 9, 'x', 4, 5, 6, '-', 1, 2, 3, '+', 0, '.', '='];
+  const plusMinusClick = () => {
+    if (calculation.num === 0) {
+      setCalculation({
+        ...calculation,
+        num: "-0"
+      });
+    } else {
+      setCalculation({
+        ...calculation,
+        num: -calculation.num
+      });
+    }
+
+
+  }
 
   const handleBtnClick = (evt) => {
+    setIsHighlighted(false);
+
     const val = evt.target.value;
     const results = {
       '.': dotClick,
@@ -91,7 +114,22 @@ const CalculatorButton = (props) => {
       '+': signClick,
       'x': signClick,
       '=': equalsClick,
-      '+/-': null
+      '+/-': plusMinusClick,
+    }
+    const ops = ['%', '÷', '-', 'x', '+']
+
+    // check if an operation btn was clicked
+    if (val in ops) {
+      setIsHighlighted(true);
+    }
+    // console.log(calculation.sign);
+    // console.log()
+    // check if a previous
+    console.log(val);
+    console.log(ops.includes(calculation.sign))
+    if (ops.includes(calculation.sign) && val in ops) {
+      console.log("hello");
+      return results['=']();
     }
 
     if (results[val]) {
@@ -105,7 +143,8 @@ const CalculatorButton = (props) => {
     <React.Fragment>
       <button
         className={
-          `${classes.btn} ${additionalCSS} ${props.buttonStyle ? props.buttonStyle : ''}`}
+          `${classes.btn} ${additionalCSS} ${props.buttonStyle ? props.buttonStyle : ''} ${isHighlighted ? classes.highlight : ''}`
+        }
         value={ props.buttonSymbol }
         onClick={ handleBtnClick }
       >
