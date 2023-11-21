@@ -6,7 +6,9 @@ export const CalculatorProvider = ({ children }) => {
   const [calculation, setCalculation] = useState({
     sign: "",
     num: 0,
-    res: 0
+    res: 0,
+    firstNumberClick: false,
+    secondNumberClick: false,
   });
 
   const providerValue = {

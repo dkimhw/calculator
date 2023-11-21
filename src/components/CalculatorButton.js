@@ -12,7 +12,6 @@ const CalculatorButton = (props) => {
 
   // Component states
   const [isHighlighted, setIsHighlighted] = useState(false);
-  const [isOpClick, setIsOpClick ] = useState(false);
 
   // Parse what css style to use
   let additionalCSS = '';
@@ -53,36 +52,57 @@ const CalculatorButton = (props) => {
       num: numberValue
     });
   }
+  const calcResult = (a, b, sign) => {
+    const result = {
+      '+': (a, b) => a + b,
+      '-': (a, b) => a - b,
+      '÷': (a, b) => a / b,
+      'x': (a, b) => a * b,
+      '%': (a, b) => a % b,
+    }
 
-  const signClick = () => {
-    setCalculation({
-      sign: props.buttonSymbol,
-      res: !calculation.res && calculation.num ? calculation.num : calculation.res,
-      num: 0
-    })
+    return result[sign](a, b);
   };
 
   const equalsClick = () => {
     if (calculation.res && calculation.num) {
-      const math = (a, b, sign) => {
-        const result = {
-          '+': (a, b) => a + b,
-          '-': (a, b) => a - b,
-          '÷': (a, b) => a / b,
-          'x': (a, b) => a * b,
-          '%': (a, b) => a % b,
-        }
+      // const math = (a, b, sign) => {
+      //   const result = {
+      //     '+': (a, b) => a + b,
+      //     '-': (a, b) => a - b,
+      //     '÷': (a, b) => a / b,
+      //     'x': (a, b) => a * b,
+      //     '%': (a, b) => a % b,
+      //   }
 
-        return result[sign](a, b);
-      };
+      //   return result[sign](a, b);
+      // };
 
       setCalculation({
-        res: math(Number(calculation.res), Number(calculation.num), calculation.sign),
+        res: calcResult(Number(calculation.res), Number(calculation.num), calculation.sign),
         sign: '',
         num: 0,
       });
     }
   }
+
+  const signClick = () => {
+    const ops = ['%', '÷', '-', 'x', '+'];
+    if (props.buttonSymbol && ops.includes(calculation.sign)) {
+      setCalculation({
+        sign: props.buttonSymbol,
+        res: calcResult(Number(calculation.res), Number(calculation.num), props.buttonSymbol),
+        num: 0
+      })
+    } else {
+      setCalculation({
+        sign: props.buttonSymbol,
+        res: !calculation.res && calculation.num ? calculation.num : calculation.res,
+        num: 0
+      })
+    }
+  };
+
 
   // const mainCalculatorInputSymbols = ['AC', '+/-', '%', '÷', 7, 8, 9, 'x', 4, 5, 6, '-', 1, 2, 3, '+', 0, '.', '='];
   const plusMinusClick = () => {
@@ -97,8 +117,6 @@ const CalculatorButton = (props) => {
         num: -calculation.num
       });
     }
-
-
   }
 
   const handleBtnClick = (evt) => {
@@ -116,20 +134,11 @@ const CalculatorButton = (props) => {
       '=': equalsClick,
       '+/-': plusMinusClick,
     }
-    const ops = ['%', '÷', '-', 'x', '+']
+    const ops = ['%', '÷', '-', 'x', '+'];
 
     // check if an operation btn was clicked
     if (val in ops) {
       setIsHighlighted(true);
-    }
-    // console.log(calculation.sign);
-    // console.log()
-    // check if a previous
-    console.log(val);
-    console.log(ops.includes(calculation.sign))
-    if (ops.includes(calculation.sign) && val in ops) {
-      console.log("hello");
-      return results['=']();
     }
 
     if (results[val]) {
