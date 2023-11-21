@@ -52,6 +52,7 @@ const CalculatorButton = (props) => {
       num: numberValue
     });
   }
+
   const calcResult = (a, b, sign) => {
     const result = {
       '+': (a, b) => a + b,
@@ -89,9 +90,10 @@ const CalculatorButton = (props) => {
   const signClick = () => {
     const ops = ['%', '÷', '-', 'x', '+'];
     if (props.buttonSymbol && ops.includes(calculation.sign)) {
+      const resolveCurrCalc = calcResult(Number(calculation.res), Number(calculation.num), calculation.sign)
       setCalculation({
         sign: props.buttonSymbol,
-        res: calcResult(Number(calculation.res), Number(calculation.num), props.buttonSymbol),
+        res: resolveCurrCalc,
         num: 0
       })
     } else {

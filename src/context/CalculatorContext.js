@@ -7,8 +7,6 @@ export const CalculatorProvider = ({ children }) => {
     sign: "",
     num: 0,
     res: 0,
-    firstNumberClick: false,
-    secondNumberClick: false,
   });
 
   const providerValue = {
